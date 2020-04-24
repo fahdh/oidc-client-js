@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   public login(): Promise<void> {
-    return this.userManager.signinRedirect();
+    return this.userManager.signinRedirect({state_id:"yahoo.com"});
   }
 
   public renewToken(): Promise<User> {

@@ -10,7 +10,7 @@ export class SigninRequest {
         // mandatory
         url, client_id, redirect_uri, response_type, scope, authority,
         // optional
-        data, prompt, display, max_age, ui_locales, id_token_hint, login_hint, acr_values, resource, response_mode,
+        state_id, data, prompt, display, max_age, ui_locales, id_token_hint, login_hint, acr_values, resource, response_mode,
         request, request_uri, extraQueryParams, request_type, client_secret, extraTokenParams, skipUserInfo
     }) {
         if (!url) {
@@ -45,7 +45,7 @@ export class SigninRequest {
             response_mode = SigninRequest.isCode(response_type) ? "query" : null;
         }
 
-        this.state = new SigninState({ nonce: oidc, 
+        this.state = new SigninState( {id: state_id, nonce: oidc, 
             data, client_id, authority, redirect_uri, 
             code_verifier: code, 
             request_type, response_mode,
